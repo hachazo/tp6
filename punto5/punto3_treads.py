@@ -1,5 +1,5 @@
 ## El ejercicio pedía que se usaran procesos.
-import threading
+from threading import Thread
 from multiprocessing import Process
 import time
 import random
@@ -14,7 +14,7 @@ class Cuenta:
     def descontar(self, monto):
         self._saldo -= monto
 
-class Tarjeta(threading.Thread):
+class Tarjeta(Thread):
     def __init__(self, id, cuenta):
         super().__init__()
         self._id = id
@@ -25,6 +25,7 @@ class Tarjeta(threading.Thread):
             self._cuenta.descontar(100)
             time.sleep(1)
             print(f"Nuevo gasto - Tarjeta {self._id} - Nomto: 100")
+    
     def getSaldo(self):
         return self._cuenta.getSaldo()
 
